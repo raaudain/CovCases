@@ -1,13 +1,13 @@
 import React from 'react'
 import Header from './Header';
-import Map from "./Map";
+import USMap from "./USMap";
 
 export default function HomePage() {
 
     return (
         <>
         <Header />
-        <Map />
+        <USMap />
         </>
     )
 }
