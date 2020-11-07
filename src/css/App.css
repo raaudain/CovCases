@@ -1,8 +1,18 @@
 @import url("./Reset.css");
 
+@import url("./Homepage.css");
 @import url("./Header.css");
+@import url("./CovidCases.css");
+@import url("./LocateMe.css");
 
 
 html {
   font-size: 62.5%;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #17171f;
+}
+
+a {
+  text-decoration: none;
+  color: currentColor;
 }

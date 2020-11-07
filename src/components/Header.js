@@ -2,6 +2,8 @@ import React from "react";
 import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocomplete";
 import { Combobox, ComboboxInput, ComboboxPopover, ComboboxList, ComboboxOption, } from "@reach/combobox";
 
+import LocateMe from "./LocateMe";
+
 export default function Header({ panTo }) {
   const { ready, value, suggestions: { status, data }, setValue, clearSuggestions } = usePlacesAutocomplete({
     requestOptions: {
@@ -10,14 +12,8 @@ export default function Header({ panTo }) {
     },
   });
 
-  return (
-    <div className="header">
-      <div className="logo">CovCases</div>
-      {/* <div className="input"><input placeholder="Enter location" /></div> */}
-      <div className="search">
-        <Combobox
-          onSelect={async (address) => {
-            setValue(address, false);
+  const handleSelect = async (address) => {
+    setValue(address, false);
             clearSuggestions();
 
             try {
@@ -27,23 +23,31 @@ export default function Header({ panTo }) {
             } catch (err) {
               console.error(err);
             }
-          }}
-        >
+  }
+
+  return (
+    <div className="header">
+      <div className="logo"><a href="/">CovCases</a></div>
+      {/* <div className="input"><input placeholder="Enter location" /></div> */}
+      <div className="search">
+        <Combobox onSelect={handleSelect} className="combobox">
           <ComboboxInput
+            className="searchInput"
             value={value}
             onChange={(e) => setValue(e.target.value)}
             disabled={!ready}
             placeholder="Enter location"
           />
           <ComboboxPopover>
-            <ComboboxList>
+            <ComboboxList className="resultsList">
               {status === "OK" &&
                 data.map(({ id, description }) => (
-                  <ComboboxOption key={id} value={description} />
+                  <ComboboxOption className="result" key={id} value={description} />
                 ))}
             </ComboboxList>
           </ComboboxPopover>
         </Combobox>
+        <LocateMe panTo={panTo} />
       </div>
     </div>
   );

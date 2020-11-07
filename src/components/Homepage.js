@@ -4,7 +4,6 @@ import { fetchData } from "../api";
 
 import CovidCases from "./CovidCases";
 import Header from "./Header";
-import LocateMe from "./LocateMe";
 
 import * as theme from "../styles";
 
@@ -57,13 +56,12 @@ export default function Homepage() {
   if (!isLoaded) return "Loading Maps";
 
   return (
-    <div>
+    <div className="container">
       {!data ? (
         <div>Loading...</div>
       ) : (
         <>
           <Header panTo={panTo} />
-          <LocateMe panTo={panTo} />
           <GoogleMap
             mapContainerStyle={mapContainerStyle}
             zoom={5}
