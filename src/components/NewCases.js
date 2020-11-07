@@ -1,9 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 
-export default NewCases() {
+export default function NewCases() {
+  const [marker, setMarker] = useState([]);
 
-    return(
+  return(
         <>
+        {/* Loops through each click and displays marker */}
         {marker.map((click) => (
             <Marker
               key={click.time.toISOString()}
