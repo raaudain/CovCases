@@ -1,8 +1,8 @@
 .header {
     display: flex;
     justify-content: space-between;
-    margin: 15px 100px;
-    border-bottom: .1px solid gray;
+    margin: 15px 50px;
+    /* border-bottom: .1px solid gray; */
 }
 
 .logo, .search {
