@@ -1,13 +1,10 @@
-import HomePage from "./components/HomePage";
+import Homepage from "./components/Homepage";
 import './css/App.css';
-import dotenv from "dotenv";
-
-dotenv.config();
 
 function App() {
   return (
     <div className="App">
-      <HomePage />
+      <Homepage />
     </div>
   );
 }
