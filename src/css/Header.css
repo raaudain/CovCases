@@ -1,0 +1,26 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 50px;
+    /* border-bottom: .1px solid gray; */
+}
+
+.logo, .search {
+    /* border: 1px red solid; */
+}
+
+.logo {
+    
+    font-size: 6rem;
+}
+
+.search {
+    /* width: 50%; */
+
+}
+
+input {
+    justify-content: left;
+}
+
+
