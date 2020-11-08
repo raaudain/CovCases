@@ -1,6 +1,6 @@
 import React from "react";
 import { Marker, InfoWindow } from "@react-google-maps/api";
-import redDot from "../img/Basic_red_dot.png";
+import icon from "../img/red-circle.png";
 
 export default function CovidCases({ data, selected, setSelected }) {
   // Handles resource overload
@@ -9,8 +9,6 @@ export default function CovidCases({ data, selected, setSelected }) {
   for (let x in data) {
     hashTable[x] = data[x];
   }
-
-  // if (selected) console.log(selected.latitude)
 
   return (
     <>
@@ -21,20 +19,35 @@ export default function CovidCases({ data, selected, setSelected }) {
             key={index}
             position={{ lat: parseInt(e.latitude), lng: parseInt(e.longitude) }}
             icon={{
-              // url: redDot,
-              scaledSize: new window.google.maps.Size(3, 3),
+              url: icon,
+              scaledSize: new window.google.maps.Size(30, 30),
               origin: new window.google.maps.Point(0, 0),
-              anchor: new window.google.maps.Point(0, 0),
+              anchor: new window.google.maps.Point(25, 40),
             }}
-            // Have to use console to display information since InfoWindow isn't working
-            onMouseOver={() => console.table(e)}
- 
+            onClick={() => {setSelected(e)}}
           >
+            {selected === e ? (<InfoWindow position={{ lat: parseInt(e.latitude), lng: parseInt(e.longitude) }} onCloseClick={() => setSelected(null)}>
+              <div className="infoBox">
+                <h3>{e.county} County, {e.state}</h3>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Confirmed</th>
+                      <th>Deaths</th>
+                      <th>Recovered</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>{e.confirmed}</td>
+                      <td>{e.deaths}</td>
+                      <td>{e.recovered}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </InfoWindow>) : null}
           </Marker>
-          
-          
-            {selected ? (<InfoWindow position={{ lat: parseInt(selected.latitude), lng: parseInt(selected.longitude) }} onMouseLeave={() => setSelected(null)}><div>Hey</div></InfoWindow>) : null}
-          
           </>
         );
       })}

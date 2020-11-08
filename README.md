@@ -1,4 +1,5 @@
 # CovCases
+
 [CovCases](https://covcases.raaudain.vercel.app/) an interactive map application populated with the number of COVID-19 cases in the United States.
 
 ## APIs Used
